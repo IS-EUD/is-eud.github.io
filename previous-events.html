@@ -1,0 +1,49 @@
+---
+layout: page
+title: Previous Events
+---
+
+{% assign sorted_events = site.data.events
+	| sort: 'start'		 	
+	| reverse %}
+
+<div class="list-group">
+	{% for edition in sorted_events %}
+		<a class="list-group-item list-group-item-action" href="{{ edition.url }}">
+			<div class="row my-2">
+				<div class="col-3 col-md-1">
+					<span class="d-block h-100 w-100 fib fi-{{ edition.location.flag }}"></span>
+				</div>
+				<div class="col my-4">
+					<h2 class="mb-0 h5">
+						{{ edition.edition | ordinal: 'super' }} International Symposium on End User Development
+					</h2>
+					<p class="mb-0">
+						<span>
+							{% assign start_day = edition.start | date: '%-d' %}
+							{% assign start_month = edition.start | date: '%B' %}
+							{% assign start_year = edition.start | date: '%Y' %}
+							{% assign end_day = edition.end | date: '%-d' %}
+							{% assign end_month = edition.end | date: '%B' %}
+							{% assign end_year = edition.end | date: '%Y' %}
+							{% if start_year == end_year %}
+								{% if start_month == end_month %}
+									{{ start_month }} {{ start_day }} &ndash; {{ end_day }}, {{ start_year }}
+								{% else %}
+									{{ start_month }} {{ start_day }} &ndash; {{ end_month }} {{ end_day }}, {{ start_year }}
+								{% endif %}
+							{% else %}
+								{{ start_month }} {{ start_day }}, {{ start_year }} &ndash;
+								{{ end_month }} {{ end_day }}, {{ end_year }}
+							{% endif %}
+						</span>
+						&mdash;
+						<span>
+							{{ edition.location.city }}, {{ edition.location.country }}
+						</span>
+					</p>
+				</div>
+			</div>
+		</a>
+	{% endfor %}
+</div>

@@ -21,10 +21,16 @@ body_class: min-vh-100 d-flex flex-column
 			and academia working in the field of EUD.
 		</p>
 		<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-			<button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button
-			</button>
-			<button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary
-			</button>
+			{% assign current_edition = site.data.events
+				| sort: 'edition'		 	
+				| reverse 	 	
+				| first %}
+			<a href="{{ current_edition.url }}" class="btn btn-primary btn-lg px-4 gap-3">
+				See Current Edition
+			</a>
+			<a href="{% link previous-events.html %}" class="btn btn-outline-secondary btn-lg px-4">
+				See Past Editions
+			</a>
 		</div>
 	</div>
 </div>

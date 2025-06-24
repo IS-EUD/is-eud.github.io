@@ -1,0 +1,57 @@
+- name: Daniela
+  surname: Fogli
+  affiliation: University of Brescia
+  country: Italy
+- name: Boris
+  surname: De Ruyter
+  affiliation: Philips Innovation &amp; Strategy
+  country: The Netherlands
+- name: Gerhard
+  surname: Fischer
+  affiliation: University of Colorado
+  country: USA
+- name: Alessio
+  surname: Malizia
+  affiliation: University of Pisa
+  country: Italy
+- name: Panos
+  surname: Markopoulos
+  affiliation: Eindhoven University of Technology
+  country: The Netherlands
+- name: Anders
+  surname: "M\xF8rch"
+  affiliation: University of Oslo
+  country: Norway
+- name: Fabio
+  surname: Paternò
+  affiliation: Consiglio Nazionale delle Ricerche &ndash; ISTI, Pisa
+  country: Italy
+- name: Antonio
+  surname: Piccinno
+  affiliation: University of Bari
+  country: Italy
+  chair: true
+- name: Carmen
+  surname: Santoro
+  affiliation: Consiglio Nazionale delle Ricerche &ndash; ISTI, Pisa
+  country: Italy
+- name: Albrecht
+  surname: Schmidt
+  affiliation: Ludwig-Maximilians-Universität München
+  country: Germany
+- name: Davide
+  surname: Spano
+  affiliation: University of Cagliari
+  country: Italy
+- name: Simone
+  surname: Stumpf
+  affiliation: University of Glasgow
+  country: UK
+- name: Daniel
+  surname: Tetteroo
+  affiliation: Eindhoven University of Technology
+  country: The Netherlands
+- name: Stefano
+  surname: Valtolina
+  affiliation: University of Milan
+  country: Italy

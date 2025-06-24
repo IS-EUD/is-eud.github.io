@@ -1,0 +1,39 @@
+---
+layout: page
+title: Steering Committee
+---
+
+<article class="mb-5 p-4 rounded border table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name
+				</th>
+				<th>Affiliation
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for member in site.data.steering-committee %}
+				<tr>
+					<td>
+						{{ member.name }}
+						<strong>
+							{{ member.surname }}
+						</strong>
+						{% if member.chair %}
+							<span class="badge bg-primary">Chair
+							</span>
+						{% endif %}
+					</td>
+					<td>
+						<em>
+							{{ member.affiliation }}
+						</em>
+						({{ member.country }})
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</article>

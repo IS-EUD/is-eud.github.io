@@ -2,6 +2,7 @@
   surname: Fogli
   affiliation: University of Brescia
   country: Italy
+  email: daniela.fogli@unibs.it
 - name: Boris
   surname: De Ruyter
   affiliation: Philips Innovation &amp; Strategy
@@ -30,6 +31,7 @@
   surname: Piccinno
   affiliation: University of Bari
   country: Italy
+  email: antonio.piccinno@uniba.it
   chair: true
 - name: Carmen
   surname: Santoro

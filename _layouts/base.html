@@ -13,7 +13,7 @@
 		{% seo %}
 	</head>
 
-	<body>
+	<body class="{{ page.body_class | default: '' }}">
 		{% include navigation.html %}
 		{{ content }}
 		<div class="container-fluid">

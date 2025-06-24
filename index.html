@@ -3,28 +3,33 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 title: Home
 layout: base
+body_class: min-vh-100 d-flex flex-column
 ---
 
-<div class="px-4 py-5 my-5 text-center">
-  <img
-    class="d-block mx-auto mb-4"
-    src="{% link assets/images/logo.svg  %}"
-    alt=""
-    height="64">
-  <h1 class="display-5 fw-bold text-body-emphasis">International Symposium on End-User Development</h1>
-  <div class="col-lg-6 mx-auto">
-    <p class="lead mb-4">
-      Organized as a biannual event, the International 
-        Symposium on End User Development (IS-EUD) brings together researchers
-        and practitioners from industry and academia working in the field of
-        EUD.
-    </p>
-    <p>
-      <a href="https://iseud2025.ubicomp.net/" target="_self">The 2025 edition is organized from June 16th till 18th in Munich (Germany)</a>
-    </p>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
-      <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
-    </div>
-  </div>
+<div class="px-4 py-5 my-5 text-center flex-grow-1 align-content-center">
+	<img
+		class="d-block mx-auto mb-4"
+		src="{% link assets/images/logo.svg  %}"
+		alt=""
+		height="64">
+	<h1 class="display-5 fw-bold text-body-emphasis">International Symposium on End-User Development
+	</h1>
+	<div class="col-lg-6 mx-auto">
+		<p class="lead mb-4">
+			Organized as a biannual event, the International Symposium on End User
+			Development (IS-EUD) brings together researchers and practitioners from industry
+			and academia working in the field of EUD.
+		</p>
+		<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+			<button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button
+			</button>
+			<button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary
+			</button>
+		</div>
+	</div>
 </div>
+
+<p class="text-center">
+	<a href="https://iseud2025.ubicomp.net/" target="_self">The 2025 edition is organized from June 16th till 18th in Munich (Germany)
+	</a>
+</p>

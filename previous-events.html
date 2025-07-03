@@ -9,7 +9,7 @@ title: Previous Events
 
 <div class="list-group">
 	{% for edition in sorted_events %}
-		<a class="list-group-item list-group-item-action" href="{{ edition.url }}">
+		<a class="list-group-item list-group-item-action" href="{{ edition.url | absolute_url }}">
 			<div class="row my-2">
 				<div class="col-3 col-md-1">
 					<span class="d-block h-100 w-100 fib fi-{{ edition.location.flag }}"></span>

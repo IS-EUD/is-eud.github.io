@@ -1,11 +1,11 @@
 - edition: 1
   start: 2003-10-06
-  end: 2023-10-07
+  end: 2003-10-07
   location:
     city: Schloss Birlinghoven, Sankt Augustin
     country: Germany
     flag: de
-  url: http://giove.isti.cnr.it/projects/EUD-NET/bonn.htm
+  url: /2003/
 - edition: 2
   start: 2009-03-02
   end: 2009-03-04
@@ -13,7 +13,7 @@
     city: Siegen
     country: Germany
     flag: de
-  url: https://iseud.net/2009
+  url: /2009/
 - edition: 3
   start: 2011-06-07
   end: 2011-06-10
@@ -21,7 +21,7 @@
     city: Brindisi
     country: Italy
     flag: it
-  url: https://iseud.net/2011
+  url: /2011/
 - edition: 4
   start: 2013-06-10
   end: 2013-06-13
@@ -29,7 +29,7 @@
     city: Copenhagen
     country: Denmark
     flag: dk
-  url: https://iseud.net/2013
+  url: /2013/content/conference.html
 - edition: 5
   start: 2015-05-26
   end: 2015-05-29
@@ -37,7 +37,7 @@
     city: Madrid
     country: Spain
     flag: es
-  url: https://iseud.net/2015
+  url: /2015/
 - edition: 6
   start: 2017-06-13
   end: 2017-06-15
@@ -45,7 +45,7 @@
     city: Eindhoven
     country: The Netherlands
     flag: nl
-  url: https://iseud.net/2017
+  url: /2017/
 - edition: 7
   start: 2019-07-10
   end: 2019-07-12
@@ -53,7 +53,7 @@
     city: Hertfordshire
     country: United Kingdom
     flag: gb
-  url: https://iseud.net/2019
+  url: /2019/
 - edition: 8
   start: 2021-07-06
   end: 2021-07-07
@@ -61,7 +61,7 @@
     city: University of Cyprus
     country: Cyprus
     flag: cy
-  url: https://iseud.net/2021
+  url: /2021/
 - edition: 9
   start: 2023-06-06
   end: 2023-06-08
@@ -69,7 +69,7 @@
     city: "Cagliari"
     country: "Italy"
     flag: it
-  url: https://iseud.net/2023
+  url: /2023/
 - edition: 10
   start: 2025-06-16
   end: 2025-06-18
@@ -77,4 +77,4 @@
     city: "Munich"
     country: "Germany"
     flag: de
-  url: https://iseud2025.ubicomp.net/
+  url: /2025/

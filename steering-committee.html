@@ -14,7 +14,8 @@ title: Steering Committee
 			</tr>
 		</thead>
 		<tbody>
-			{% for member in site.data.steering-committee %}
+			{% assign sorted_members = site.data.steering-committee | sort: 'surname' %}
+			{% for member in sorted_members %}
 				<tr>
 					<td>
 						{{ member.name }}

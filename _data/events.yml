@@ -78,3 +78,11 @@
     country: "Germany"
     flag: de
   url: /2025/
+- edition: 11
+  start: 2027-06-14
+  end: 2027-06-16
+  location:
+    city: Madrid
+    country: Spain
+    flag: es
+  url: "#"

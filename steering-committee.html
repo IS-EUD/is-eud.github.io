@@ -14,7 +14,25 @@ title: Steering Committee
 			</tr>
 		</thead>
 		<tbody>
-			{% assign sorted_members = site.data.steering-committee | sort: 'surname' %}
+            {% assign chairs = site.data.steering-committee | where: "chair", true | sort: 'surname' %}
+			{% assign sorted_members = site.data.steering-committee | where: "chair", null | sort: 'surname' %}
+			{% for member in chairs %}
+				<tr>
+					<td>
+						{{ member.name }}
+						<strong>
+							{{ member.surname }}
+						</strong>
+                        <span class="badge bg-primary">Chair</span>
+					</td>
+					<td>
+						<em>
+							{{ member.affiliation }}
+						</em>
+						({{ member.country }})
+					</td>
+				</tr>
+			{% endfor %}
 			{% for member in sorted_members %}
 				<tr>
 					<td>
@@ -22,10 +40,6 @@ title: Steering Committee
 						<strong>
 							{{ member.surname }}
 						</strong>
-						{% if member.chair %}
-							<span class="badge bg-primary">Chair
-							</span>
-						{% endif %}
 					</td>
 					<td>
 						<em>

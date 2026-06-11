@@ -14,19 +14,45 @@ body_class: min-vh-100 d-flex flex-column
 		height="64">
 	<h1 class="display-5 fw-bold text-body-emphasis">International Symposium Series on End-User Development
 	</h1>
+        {% assign current_edition = site.data.events
+            | sort: 'edition'		 	
+            | reverse 	 	
+            | first %}
+
+        {% assign today = 'now' | date: "%s" %}
+        {% assign current_edition_end = current_edition.end | date: "%s" %}
+        {% if today < current_edition_end %}
+        <section class="lead mb-4">
+            <strong class="fw-bold">Upcoming Edition:</strong>
+            <p>
+                IS-EUD {{ current_edition.start | date: "%Y" }},
+                {{ current_edition.start | date: "%b %d" }}&ndash;{{ current_edition.end | date: "%b %d %Y" }},
+                {{ current_edition.location.city }}
+                ({{ current_edition.location.country }})
+
+            </p>
+        </section>
+        {% endif %}
 	<div class="col-lg-6 mx-auto">
 		<p class="lead mb-4">
-			Organized as a biannual event, the International Symposium on End User
+			Organized as a biannual event, the International Symposium Series on End User
 			Development (IS-EUD) brings together researchers and practitioners from industry
 			and academia working in the field of EUD.
 		</p>
+
+        
 		<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-			{% assign current_edition = site.data.events
-				| sort: 'edition'		 	
-				| reverse 	 	
-				| first %}
+            {% if current_edition.url %}
 			<a href="{{ current_edition.url }}" class="btn btn-primary btn-lg px-4 gap-3">
-				See Last Edition
+                {% if today < current_edition_end %}
+                    See Upcoming Edition
+                {% else %}
+                    See Last Edition
+                {% endif %}
+			</a>
+            {% endif %}
+			<a href="{% link previous-events.html %}" class="btn btn-outline-primary btn-lg px-4 gap-3">
+				See Previous Editions
 			</a>
 		</div>
 	</div>

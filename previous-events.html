@@ -6,9 +6,17 @@ title: Previous Events
 {% assign sorted_events = site.data.events
 	| sort: 'start'		 	
 	| reverse %}
+{% assign current_edition = sorted_events
+    | first %}
+
+{% assign today = 'now' | date: "%s" %}
 
 <div class="list-group">
 	{% for edition in sorted_events %}
+        {% assign current_edition_end = edition.end | date: "%s" %}
+        {% if today < current_edition_end %}
+            {% continue %}
+        {% endif %}
 		<a class="list-group-item list-group-item-action" href="{{ edition.url | absolute_url }}">
 			<div class="row my-2">
 				<div class="col-3 col-md-1">

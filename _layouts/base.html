@@ -4,6 +4,20 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script>
+			// Apply the saved (or OS) colour scheme before first paint to avoid a flash.
+			(function () {
+				var theme;
+				try { theme = localStorage.getItem("theme"); } catch (e) {}
+				if (theme !== "light" && theme !== "dark") {
+					theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+				}
+				document.documentElement.setAttribute("data-bs-theme", theme);
+			})();
+		</script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 		<link href="{% link assets/styles/main.scss %}" rel="stylesheet" >
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
 			<!-- FAVICON -->
@@ -19,38 +33,51 @@
 		{% seo %}
 	</head>
 
-	<body class="{{ page.body_class | default: '' }}">
+	<body class="d-flex flex-column min-vh-100 {{ page.body_class }}">
+		<a class="skip-link" href="#main">Skip to content</a>
 		{% include navigation.html %}
-		{{ content }}
-		<div class="container-fluid">
-			<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4
-border-top">
-				<p class="col-md-4 mb-0 text-body-secondary">© 2025 IS-EUD
-				</p>
-				<a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-					<img
-						src="{% link assets/images/logo-sm.svg %}"
-						alt="IS-EUD Logo"
-						height="32">
-				</a>
-				<ul class="nav col-md-4 justify-content-end">
-					{% for navlink in site.data.navigation %}
-						<li class="nav-item">
-							{% if navlink.file %}
-								<a href="{% link {{ navlink.file }} %}" class="nav-link px-2 text-body-secondary">
-									{{ navlink.title }}
-								</a>
-							{% else %}
-								<a class="disabled nav-link px-2 text-body-secondary">
-									{{ navlink.title }}
-								</a>
-							{% endif %}
-						</li>
-					{% endfor %}
-				</ul>
-			</footer>
-		</div>
+		<main id="main" class="flex-grow-1">
+			{{ content }}
+		</main>
+		<footer class="site-footer mt-5 py-5">
+			<div class="container">
+				<div class="row g-4">
+					<div class="col-md-6">
+						<img
+							src="{% link assets/images/logo-white.svg %}"
+							alt="IS-EUD"
+							height="36"
+							class="mb-3">
+						<p class="mb-0" style="max-width: 36ch;">
+							The International Symposium Series on End-User Development.
+						</p>
+					</div>
+					<div class="col-md-6">
+						<h2>Explore</h2>
+						<ul class="list-unstyled mb-0">
+							{% for navlink in site.data.navigation %}
+								{% if navlink.file %}
+									<li class="mb-1"><a href="{% link {{ navlink.file }} %}">{{ navlink.title }}</a></li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				<hr class="my-4 opacity-25">
+				<p class="small mb-0">&copy; {{ 'now' | date: '%Y' }} IS-EUD</p>
+			</div>
+		</footer>
 		<script src="{% link assets/js/vendor/bootstrap.bundle.min.js %}"></script>
+		<script>
+			document.querySelectorAll("[data-theme-toggle]").forEach(function (button) {
+				button.addEventListener("click", function () {
+					var root = document.documentElement;
+					var next = root.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
+					root.setAttribute("data-bs-theme", next);
+					try { localStorage.setItem("theme", next); } catch (e) {}
+				});
+			});
+		</script>
 	</body>
 
 </html>

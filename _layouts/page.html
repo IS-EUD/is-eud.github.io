@@ -10,7 +10,7 @@ layout: base
 	</div>
 </header>
 <article class="container pt-5">
-	<div class="{{ page.content_class | default: 'prose' }}">
+	<div class="{% if page.wide %}w-100{% else %}prose{% endif %}">
 		{{ content }}
 	</div>
 </article>

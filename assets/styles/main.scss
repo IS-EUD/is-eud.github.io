@@ -253,12 +253,14 @@ a.link-card {
 
 .prose {
     max-width: 72ch;
+    margin-inline: 0;
     font-size: 1.075rem;
     line-height: 1.7;
 
     ul, ol { padding-inline-start: 1.25rem; }
     li { margin-bottom: .4rem; }
     li::marker { color: var(--brand); font-weight: 600; }
+    a { color: var(--brand-ink); font-weight: 500; }
 
     code {
         padding: .15em .45em;

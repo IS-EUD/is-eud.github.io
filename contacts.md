@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Contacts
+lead: Stay informed about new events and reach the Steering Committee.
 ---
 
 If you would like to keep informed about new events and initiatives related to EUD, join the EUD mailing list!

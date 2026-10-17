@@ -1,5 +1,6 @@
 ---
 title: Bidding
+lead: How to propose hosting a future edition of IS-EUD.
 layout: page
 ---
 

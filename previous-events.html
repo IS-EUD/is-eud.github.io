@@ -1,57 +1,49 @@
 ---
 layout: page
 title: Previous Events
+lead: Every edition of the International Symposium on End-User Development, newest first.
+wide: true
 ---
 
 {% assign sorted_events = site.data.events
-	| sort: 'start'		 	
+	| sort: 'start'
 	| reverse %}
-{% assign current_edition = sorted_events
-    | first %}
 
 {% assign today = 'now' | date: "%s" %}
 
-<div class="list-group">
+<div class="row g-5">
 	{% for edition in sorted_events %}
         {% assign current_edition_end = edition.end | date: "%s" %}
         {% if today < current_edition_end %}
             {% continue %}
         {% endif %}
-		<a class="list-group-item list-group-item-action" href="{{ edition.url | absolute_url }}">
-			<div class="row my-2">
-				<div class="col-3 col-md-1">
-					<span class="d-block h-100 w-100 fib fi-{{ edition.location.flag }}"></span>
+		<div class="md:col-6 xl:col-4">
+			<a class="edition-card p-5 h-100" href="{{ edition.url | absolute_url }}">
+				<div class="d-flex justify-content-between align-items-start mb-3">
+					<div class="edition-number">{{ edition.edition | ordinal: 'super' }}</div>
+					<span class="flag-tile fi fi-{{ edition.location.flag }}"></span>
 				</div>
-				<div class="col my-4">
-					<h2 class="mb-0 h5">
-						{{ edition.edition | ordinal: 'super' }} International Symposium on End User Development
-					</h2>
-					<p class="mb-0">
-						<span>
-							{% assign start_day = edition.start | date: '%-d' %}
-							{% assign start_month = edition.start | date: '%B' %}
-							{% assign start_year = edition.start | date: '%Y' %}
-							{% assign end_day = edition.end | date: '%-d' %}
-							{% assign end_month = edition.end | date: '%B' %}
-							{% assign end_year = edition.end | date: '%Y' %}
-							{% if start_year == end_year %}
-								{% if start_month == end_month %}
-									{{ start_month }} {{ start_day }} &ndash; {{ end_day }}, {{ start_year }}
-								{% else %}
-									{{ start_month }} {{ start_day }} &ndash; {{ end_month }} {{ end_day }}, {{ start_year }}
-								{% endif %}
-							{% else %}
-								{{ start_month }} {{ start_day }}, {{ start_year }} &ndash;
-								{{ end_month }} {{ end_day }}, {{ end_year }}
-							{% endif %}
-						</span>
-						&mdash;
-						<span>
-							{{ edition.location.city }}, {{ edition.location.country }}
-						</span>
-					</p>
-				</div>
-			</div>
-		</a>
+				<h2 class="h5 mb-2">IS-EUD {{ edition.start | date: '%Y' }}</h2>
+				<p class="mb-1 text-body-secondary">
+					{% assign start_day = edition.start | date: '%-d' %}
+					{% assign start_month = edition.start | date: '%B' %}
+					{% assign start_year = edition.start | date: '%Y' %}
+					{% assign end_day = edition.end | date: '%-d' %}
+					{% assign end_month = edition.end | date: '%B' %}
+					{% assign end_year = edition.end | date: '%Y' %}
+					{% if start_year == end_year %}
+						{% if start_month == end_month %}
+							{{ start_month }} {{ start_day }} &ndash; {{ end_day }}, {{ start_year }}
+						{% else %}
+							{{ start_month }} {{ start_day }} &ndash; {{ end_month }} {{ end_day }}, {{ start_year }}
+						{% endif %}
+					{% else %}
+						{{ start_month }} {{ start_day }}, {{ start_year }} &ndash;
+						{{ end_month }} {{ end_day }}, {{ end_year }}
+					{% endif %}
+				</p>
+				<p class="mb-0 fw-medium">{{ edition.location.city }}, {{ edition.location.country }}</p>
+			</a>
+		</div>
 	{% endfor %}
 </div>

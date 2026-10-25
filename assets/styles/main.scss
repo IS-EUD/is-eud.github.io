@@ -130,7 +130,30 @@ a {
 
 // ---------- Mobile menu (drawer) ----------
 .site-nav [class*="drawer"] {
-    --drawer-width: min(21rem, 88vw);
+    --drawer-width: min(20rem, 86vw);
+    --drawer-inset: 0px;
+    --drawer-border-radius: 0;
+    --drawer-box-shadow: -1.5rem 0 3rem -1rem rgb(0 0 0 / .35);
+    --drawer-bg: var(--bg-body);
+}
+
+.site-nav dialog::backdrop {
+    background: color-mix(in oklch, var(--black) 45%, transparent);
+    backdrop-filter: blur(3px);
+}
+
+.site-nav .navbar-toggler {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: .75rem;
+    background: transparent;
+    color: var(--fg-body);
+
+    &:hover { background: var(--bg-1); }
 }
 
 @media (max-width: 991.98px) {

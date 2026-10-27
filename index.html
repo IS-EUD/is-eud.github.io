@@ -1,59 +1,85 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 title: Home
 layout: base
-body_class: min-vh-100 d-flex flex-column
 ---
 
-<div class="px-4 py-5 my-5 text-center flex-grow-1 align-content-center">
-	<img
-		class="d-block mx-auto mb-4"
-		src="{% link assets/images/logo.svg  %}"
-		alt=""
-		height="64">
-	<h1 class="display-5 fw-bold text-body-emphasis">International Symposium Series on End-User Development
-	</h1>
-        {% assign current_edition = site.data.events
-            | sort: 'edition'		 	
-            | reverse 	 	
-            | first %}
+{% assign current_edition = site.data.events
+	| sort: 'edition'
+	| reverse
+	| first %}
+{% assign today = 'now' | date: "%s" %}
+{% assign current_edition_end = current_edition.end | date: "%s" %}
+{% assign is_upcoming = false %}
+{% if today < current_edition_end %}{% assign is_upcoming = true %}{% endif %}
 
-        {% assign today = 'now' | date: "%s" %}
-        {% assign current_edition_end = current_edition.end | date: "%s" %}
-        {% if today < current_edition_end %}
-        <section class="lead mb-4">
-            <strong class="fw-bold">Upcoming Edition:</strong>
-            <p>
-                IS-EUD {{ current_edition.start | date: "%Y" }},
-                {{ current_edition.start | date: "%b %d" }}&ndash;{{ current_edition.end | date: "%b %d %Y" }},
-                {{ current_edition.location.city }}
-                ({{ current_edition.location.country }})
+<section class="hero">
+	<div class="container">
+		<div class="row">
+			<div class="lg:col-9 xl:col-8">
+				<span class="eyebrow mb-3">Symposium Series</span>
+				<h1 class="hero-title mb-4">International Symposium Series on <em>End-User Development</em></h1>
+				<p class="lead text-body-secondary mb-4" style="max-width: 56ch;">
+					Organized as a biannual event, the International Symposium Series on End User
+					Development (IS-EUD) brings together researchers and practitioners from industry
+					and academia working in the field of EUD.
+				</p>
+				<div class="d-flex flex-wrap gap-2">
+					{% if current_edition.url %}
+					<a href="{{ current_edition.url }}" class="btn btn-solid theme-primary btn-lg">
+						{% if is_upcoming %}See Upcoming Edition{% else %}See Last Edition{% endif %}
+					</a>
+					{% endif %}
+					<a href="{% link previous-events.html %}" class="btn btn-outline theme-primary btn-lg">
+						See Previous Editions
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-            </p>
-        </section>
-        {% endif %}
-	<div class="col-lg-6 mx-auto">
-		<p class="lead mb-4">
-			Organized as a biannual event, the International Symposium Series on End User
-			Development (IS-EUD) brings together researchers and practitioners from industry
-			and academia working in the field of EUD.
-		</p>
+{% if is_upcoming %}
+<section class="container" style="margin-top: -2.5rem; position: relative;">
+	<div class="featured-edition">
+		<div class="row align-items-center g-5">
+			<div class="md:col">
+				<span class="eyebrow mb-2">Upcoming edition</span>
+				<h2 class="h1 mb-2">IS-EUD {{ current_edition.start | date: "%Y" }}</h2>
+				<p class="fs-5 mb-0">
+					{{ current_edition.start | date: "%B %-d" }}&ndash;{{ current_edition.end | date: "%-d, %Y" }}
+					&middot; {{ current_edition.location.city }}, {{ current_edition.location.country }}
+				</p>
+			</div>
+			<div class="md:col-auto d-flex align-items-center gap-3">
+				<span class="flag-tile fi fi-{{ current_edition.location.flag }}" style="width: 4rem;"></span>
+				{% if current_edition.url %}
+				<a href="{{ current_edition.url }}" class="btn btn-lg">Visit website</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}
 
-        
-		<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            {% if current_edition.url %}
-			<a href="{{ current_edition.url }}" class="btn btn-primary btn-lg px-4 gap-3">
-                {% if today < current_edition_end %}
-                    See Upcoming Edition
-                {% else %}
-                    See Last Edition
-                {% endif %}
+<section class="container py-5 mt-4">
+	<div class="row g-5">
+		<div class="md:col-4">
+			<a class="link-card p-5 h-100" href="{% link previous-events.html %}">
+				<h2 class="h4">Previous Events</h2>
+				<p class="text-body-secondary mb-0">Browse every edition since 2003.</p>
 			</a>
-            {% endif %}
-			<a href="{% link previous-events.html %}" class="btn btn-outline-primary btn-lg px-4 gap-3">
-				See Previous Editions
+		</div>
+		<div class="md:col-4">
+			<a class="link-card p-5 h-100" href="{% link steering-committee.html %}">
+				<h2 class="h4">Steering Committee</h2>
+				<p class="text-body-secondary mb-0">Meet the people guiding the series.</p>
+			</a>
+		</div>
+		<div class="md:col-4">
+			<a class="link-card p-5 h-100" href="{% link bids.md %}">
+				<h2 class="h4">Host an Edition</h2>
+				<p class="text-body-secondary mb-0">Learn how to bid for a future IS-EUD.</p>
 			</a>
 		</div>
 	</div>
-</div>
+</section>

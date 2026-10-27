@@ -1,54 +1,30 @@
 ---
 layout: page
 title: Steering Committee
+lead: The researchers who oversee the IS-EUD series and guide each edition.
+wide: true
 ---
 
-<article class="mb-5 p-4 rounded border table-responsive">
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Name
-				</th>
-				<th>Affiliation
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-            {% assign chairs = site.data.steering-committee | where: "chair", true | sort: 'surname' %}
-			{% assign sorted_members = site.data.steering-committee | where: "chair", null | sort: 'surname' %}
-			{% for member in chairs %}
-				<tr>
-					<td>
-						{{ member.name }}
-						<strong>
-							{{ member.surname }}
-						</strong>
-                        <span class="badge bg-primary">Chair</span>
-					</td>
-					<td>
-						<em>
-							{{ member.affiliation }}
-						</em>
-						({{ member.country }})
-					</td>
-				</tr>
-			{% endfor %}
-			{% for member in sorted_members %}
-				<tr>
-					<td>
-						{{ member.name }}
-						<strong>
-							{{ member.surname }}
-						</strong>
-					</td>
-					<td>
-						<em>
-							{{ member.affiliation }}
-						</em>
-						({{ member.country }})
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</article>
+{% assign chairs = site.data.steering-committee | where: "chair", true | sort: 'surname' %}
+{% assign sorted_members = site.data.steering-committee | where: "chair", null | sort: 'surname' %}
+{% assign all_members = chairs | concat: sorted_members %}
+
+<div class="row g-5">
+	{% for member in all_members %}
+		<div class="md:col-6 xl:col-4">
+			<div class="member-card p-5 h-100 d-flex gap-3 align-items-center{% if member.chair %} is-chair{% endif %}">
+				<span class="avatar-initials" aria-hidden="true">{{ member.name | slice: 0 }}{{ member.surname | slice: 0 }}</span>
+				<div>
+					<h2 class="h5 mb-1">
+						{{ member.name }} {{ member.surname }}
+						{% if member.chair %}<span class="badge theme-primary ms-1">Chair</span>{% endif %}
+					</h2>
+					<p class="mb-0 small text-body-secondary">
+						{{ member.affiliation }}
+						<br>{{ member.country }}
+					</p>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>

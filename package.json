@@ -1,0 +1,11 @@
+{
+  "name": "is-eud.github.io",
+  "private": true,
+  "description": "International Symposium Series on End-User Development website",
+  "scripts": {
+    "postinstall": "node -e \"require('fs').cpSync('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js','assets/js/vendor/bootstrap.bundle.min.js')\""
+  },
+  "dependencies": {
+    "bootstrap": "6.0.0-alpha.1"
+  }
+}

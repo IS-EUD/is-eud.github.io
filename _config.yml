@@ -30,7 +30,6 @@ twitter_username: jekyllrb
 github_username:  jekyll
 
 # Build settings
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
@@ -40,6 +39,16 @@ logo: /assets/images/logo.png
 
 sass:
   style: compressed
+  load_paths:
+    - node_modules
+
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
 
 # Exclude from processing.
 # The following items will not be processed, by default.

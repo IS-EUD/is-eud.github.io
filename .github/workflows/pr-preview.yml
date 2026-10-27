@@ -1,0 +1,61 @@
+name: PR Preview
+
+# Builds the site as it would look after merging the PR and publishes it as a
+# private workflow artifact. Artifacts are only downloadable by people with
+# access to the repository, so nothing is exposed publicly.
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout merged result
+        # For pull_request events this checks out the merge commit of the PR
+        # into main, i.e. what the site would look like once merged.
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0'
+          bundler-cache: true
+          cache-version: 0
+      - name: Build with Jekyll
+        # Empty baseurl so the site works when served from the root locally.
+        run: bundle exec jekyll build --baseurl ""
+        env:
+          JEKYLL_ENV: production
+      - name: Upload preview
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-preview-pr-${{ github.event.pull_request.number }}
+          path: _site
+          retention-days: 7
+      - name: Add instructions to job summary
+        run: |
+          {
+            echo "## Site preview for PR #${{ github.event.pull_request.number }}"
+            echo
+            echo "Download the [\`site-preview-pr-${{ github.event.pull_request.number }}\` artifact](${{ steps.upload.outputs.artifact-url }}) (repository members only, kept 7 days), unzip it and serve it locally:"
+            echo
+            echo '```sh'
+            echo 'cd <unzipped-folder>'
+            echo 'python3 -m http.server 8000   # then open http://localhost:8000'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

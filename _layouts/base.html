@@ -64,7 +64,12 @@
 					</div>
 				</div>
 				<hr class="my-4 opacity-25">
-				<p class="small mb-0">&copy; {{ 'now' | date: '%Y' }} IS-EUD</p>
+				<div class="d-flex flex-column flex-md-row justify-content-between gap-1 small">
+					<p class="mb-0">&copy; {{ 'now' | date: '%Y' }} IS-EUD</p>
+					<p class="mb-0 opacity-75" style="font-size: .8em;">
+						Designed and made with &hearts; by <a href="https://espositoandrea.github.io" target="_blank" rel="noopener">Andrea Esposito</a>
+					</p>
+				</div>
 			</div>
 		</footer>
 		<script type="module" src="{% link assets/js/vendor/bootstrap.bundle.min.js %}"></script>
